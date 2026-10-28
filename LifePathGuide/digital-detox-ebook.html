@@ -22,20 +22,19 @@
 
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="numerology-tarot.html" class="nav-link">Numerology & Tarot</a></li>
+        <li><a href="numerology-tarot.html" class="nav-link">Numerology and Tarot</a></li>
         <li><a href="hypnotherapy.html" class="nav-link">Hypnotherapy</a></li>
         <li><a href="written-reports.html" class="nav-link">Written Reports</a></li>
-        <li><a href="digital-detox-ebook.html" class="nav-link active">eBook: Digital Detox</a></li>
-        <li><a href="free-guides.html" class="nav-link">Free Guides</a></li>
         <li><a href="about.html" class="nav-link">About Simon</a></li>
+        <li><a href="free-guides.html" class="nav-link">Free Guides</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
 
-      <button class="nav-cta-btn" data-open-booking data-service="Digital Detox eBook Purchase">
-        <span>Get the eBook</span>
+      <button class="nav-cta-btn" data-open-booking data-service="Numerology & Tarot Consultation (60 Mins)">
+        <span>Enquire About a Session</span>
       </button>
 
-      <button class="mobile-menu-toggle">☰</button>
+      <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">☰</button>
     </div>
   </header>
 
@@ -219,29 +218,49 @@
   <!-- PURCHASE EBOOK MODAL -->
   <div id="bookingModal" class="modal-overlay">
     <div class="modal-card">
-      <button id="closeBookingModal" class="modal-close-btn">✕</button>
-      <h3 class="modal-title">Purchase eBook: Digital Detox</h3>
-      <p class="modal-subtitle">Instant PDF download delivered directly to your inbox upon order.</p>
+      <button id="closeBookingModal" class="modal-close-btn" aria-label="Close modal">✕</button>
+      
+      <div id="bookingFormWrapper">
+        <h3 class="modal-title">Purchase eBook: Digital Detox</h3>
+        <p class="modal-subtitle">Instant PDF download delivered directly to your inbox upon order.</p>
 
-      <form id="bookingForm" class="form-grid">
-        <input type="hidden" id="bookingServiceSelect" value="Digital Detox eBook Purchase">
-        <div class="form-field">
-          <label for="bookName">Your Name</label>
-          <input type="text" id="bookName" placeholder="e.g. Emma Vance" required>
+        <form id="bookingForm" class="form-grid">
+          <input type="hidden" id="bookingServiceSelect" value="Digital Detox eBook Purchase">
+          <div class="form-field">
+            <label for="bookName">Your Name</label>
+            <input type="text" id="bookName" placeholder="e.g. Emma Vance" required>
+          </div>
+          <div class="form-field">
+            <label for="bookEmail">Email Address for Instant PDF Delivery</label>
+            <input type="email" id="bookEmail" placeholder="emma@example.com" required>
+          </div>
+          <div
+            style="background: rgba(212, 175, 55, 0.08); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-glow); display: flex; justify-content: space-between; align-items: center;">
+            <span>Digital Detox - The Full Guide (PDF)</span>
+            <strong style="color: var(--gold-light); font-size: 1.2rem;">£9.99</strong>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+            Complete Purchase & Get PDF
+          </button>
+        </form>
+      </div>
+
+      <div id="bookingSuccessDisplay" style="display: none;" class="modal-confirmation-state">
+        <div class="confirmation-check-icon">✓</div>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Order Received</h3>
+        <p class="confirmation-next-steps">
+          Thank you, <strong id="confirmName"></strong>! Your request for the Digital Detox guide has been recorded. An order confirmation has been emailed to <strong id="confirmEmail"></strong>.
+        </p>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+          <a id="emailClientFallbackLink" href="#" class="btn-secondary" style="font-size: 0.85rem;">
+            Contact Simon Directly
+          </a>
+          <button id="closeConfirmBtn" class="btn-primary" style="font-size: 0.85rem;">
+            Done
+          </button>
         </div>
-        <div class="form-field">
-          <label for="bookEmail">Email Address for Instant PDF Delivery</label>
-          <input type="email" id="bookEmail" placeholder="emma@example.com" required>
-        </div>
-        <div
-          style="background: rgba(212, 175, 55, 0.08); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-glow); display: flex; justify-content: space-between; align-items: center;">
-          <span>Digital Detox - The Full Guide (PDF)</span>
-          <strong style="color: var(--gold-light); font-size: 1.2rem;">£9.99</strong>
-        </div>
-        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
-          Complete Purchase & Get PDF
-        </button>
-      </form>
+      </div>
     </div>
   </div>
 

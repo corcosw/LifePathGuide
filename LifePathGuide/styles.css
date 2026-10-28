@@ -1018,3 +1018,440 @@ a:hover {
     gap: 1rem;
   }
 }
+
+/* ==========================================================================
+   Additional Components (Richard Knight Website Review Updates)
+   ========================================================================== */
+
+/* Situations Visitors Explore */
+.situations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.situation-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.situation-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.situation-icon {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.situation-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-main);
+}
+
+.situation-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Consultation Main Spotlight Card */
+.consultation-spotlight {
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9) 0%, rgba(26, 36, 56, 0.7) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: 24px;
+  padding: 3rem;
+  margin-top: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(212, 175, 55, 0.08);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.consultation-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.spec-badge {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.consultation-journey-list {
+  list-style: none;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.consultation-journey-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.journey-step-num {
+  background: var(--gold-primary);
+  color: #0B0F19;
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.consultation-pricing-box {
+  background: rgba(11, 15, 25, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price-tag-large {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.price-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Client Feedback / Experiences */
+.client-feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.feedback-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.feedback-quote {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.feedback-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.feedback-author-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.feedback-author-info h5 {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.feedback-author-info p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* Credentials Bar */
+.credentials-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  margin: 2rem 0;
+}
+
+.credential-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.credential-icon {
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+}
+
+/* Practical FAQs */
+.faq-container {
+  max-width: 860px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  transition: border-color var(--transition-fast);
+}
+
+.faq-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.faq-card h4 {
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faq-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* Sample Report Card */
+.report-sample-card {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(20, 29, 48, 0.95) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+}
+
+.report-header-banner {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.report-sample-pill {
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  color: var(--cyan-accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.report-sample-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.report-column-box {
+  background: rgba(11, 15, 25, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.report-column-box h5 {
+  font-size: 0.95rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+}
+
+.report-column-box p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* Rich In-Modal Confirmation State */
+.modal-confirmation-state {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.confirmation-check-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid #10B981;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 1.25rem;
+}
+
+.confirmation-summary-card {
+  background: rgba(11, 15, 25, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.confirmation-summary-card dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.confirmation-summary-card dt {
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.confirmation-summary-card dd {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.confirmation-next-steps {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Quickstart reader modal */
+.quickstart-reader-container {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.quickstart-section-box {
+  background: rgba(11, 15, 25, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.quickstart-section-box h4 {
+  color: var(--gold-primary);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.quickstart-section-box p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Privacy disclaimer pill */
+.privacy-notice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+  .situations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .consultation-spotlight {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+  .client-feedback-grid {
+    grid-template-columns: 1fr;
+  }
+  .report-sample-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .situations-grid {
+    grid-template-columns: 1fr;
+  }
+  .credentials-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
