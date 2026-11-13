@@ -296,22 +296,292 @@ function initModalHandlers() {
     });
   }
 
-  // Free Guide Download Modal
+  // Free Guide & Free Numerology Report Modal
+  const WIX_SHOP_URL = 'https://www.thecelestialnavigator.com/category/all-products';
   const guideModal = document.getElementById('guideModal');
   const closeGuideBtn = document.getElementById('closeGuideModal');
   const guideForm = document.getElementById('guideForm');
   const guideFormWrapper = document.getElementById('guideFormWrapper');
   const guideSuccessDisplay = document.getElementById('guideSuccessDisplay');
   const closeGuideConfirmBtn = document.getElementById('closeGuideConfirmBtn');
+  let activeGuideName = 'Free Personal Numerology Summary';
+
+  const pythagoreanMap = {
+    A: 1, J: 1, S: 1,
+    B: 2, K: 2, T: 2,
+    C: 3, L: 3, U: 3,
+    D: 4, M: 4, V: 4,
+    E: 5, N: 5, W: 5,
+    F: 6, O: 6, X: 6,
+    G: 7, P: 7, Y: 7,
+    H: 8, Q: 8, Z: 8,
+    I: 9, R: 9
+  };
+
+  const numberArchetypes = {
+    1: {
+      title: 'The Independent Pioneer',
+      expression: 'You naturally express original ideas, self-starting initiative, and decisive leadership when working on projects you own.',
+      soulUrge: 'At heart, you crave autonomy, personal mastery, and the freedom to forge your own direction without unnecessary interference.',
+      personality: 'Others first notice your self-assurance, directness, and readiness to take the lead when a group hesitates.',
+      birthday: 'Your birth day brings inventive focus and quiet determination to solve problems independently.',
+      personalYear: 'A year of fresh starts, planting new seeds, and stepping boldly into an independent next chapter.'
+    },
+    2: {
+      title: 'The Intuitive Peacemaker',
+      expression: 'Your talents shine through diplomacy, attentive listening, mediation, and building thoughtful partnerships.',
+      soulUrge: 'Deep down, you seek emotional harmony, genuine mutual respect, and supportive one-to-one connections.',
+      personality: 'People experience you as approachable, tactful, calm, and perceptive to unspoken room dynamics.',
+      birthday: 'Your birth day highlights sensitivity, cooperation, and an eye for subtle detail and balance.',
+      personalYear: 'A year of patience, meaningful collaborations, and letting foundations develop quietly behind the scenes.'
+    },
+    3: {
+      title: 'The Creative Communicator',
+      expression: 'You are gifted in self-expression—whether speaking, writing, teaching, or bringing warmth and imagination to everyday work.',
+      soulUrge: 'Your inner driver is joyful creativity, authentic expression, and sharing uplifting ideas with others.',
+      personality: 'You come across as expressive, articulate, warm, and naturally uplifting in social or collaborative settings.',
+      birthday: 'Your birth day gives you a lively spark of wit, communication flair, and creative versatility.',
+      personalYear: 'A year of creative momentum, open communication, social connection, and giving voice to your ideas.'
+    },
+    4: {
+      title: 'The Master Architect',
+      expression: 'You excel at turning abstract concepts into structured systems, reliable routines, and durable results.',
+      soulUrge: 'Inside, you value stability, clarity, honesty, and knowing that your effort builds something trustworthy and lasting.',
+      personality: 'Others see you as dependable, grounded, practical, and someone who keeps their word under pressure.',
+      birthday: 'Your birth day reinforces methodical focus, practical craftsmanship, and steady endurance.',
+      personalYear: 'A year for organising your habits, strengthening practical foundations, and steady step-by-step progress.'
+    },
+    5: {
+      title: 'The Versatile Explorer',
+      expression: 'Your strengths flourish in dynamic environments—adapting quickly, connecting ideas, and guiding others through change.',
+      soulUrge: 'Your deepest desire is room to grow, curiosity, fresh experiences, and freedom from stale routines.',
+      personality: 'People perceive you as energetic, adaptable, open-minded, and comfortable exploring unfamiliar ground.',
+      birthday: 'Your birth day adds quick mental agility, curiosity, and resilience during life transitions.',
+      personalYear: 'A pivotal year of movement, fresh perspective, breaking out of ruts, and welcoming constructive change.'
+    },
+    6: {
+      title: 'The Compassionate Guardian',
+      expression: 'You naturally bring care, counsel, aesthetic balance, and steady responsibility to your family, community, or clients.',
+      soulUrge: 'At your core, you want to feel useful, nurture those you care about, and create a peaceful, supportive environment.',
+      personality: 'Others view you as warm, trustworthy, protective, and someone people instinctively confide in.',
+      birthday: 'Your birth day emphasises empathy, stewardship, and a knack for restoring harmony where tension exists.',
+      personalYear: 'A year focused on home, relationships, personal responsibility, and caring cleanly for your priorities.'
+    },
+    7: {
+      title: 'The Intuitive Seeker & Analyst',
+      expression: 'Your mind naturally probes beneath surface appearances—excelling in research, reflection, strategy, and insightful analysis.',
+      soulUrge: 'Quietly, you long for truth, unhurried solitude to think clearly, and spiritual or philosophical understanding.',
+      personality: 'You project thoughtful composure, depth, and quiet discernment that invites trust without loud self-promotion.',
+      birthday: 'Your birth day lends keen observation, intuitive pattern-recognition, and an appreciation for privacy.',
+      personalYear: 'A year of inner reflection, deepening your skills, slowing down the noise, and trusting your discernment.'
+    },
+    8: {
+      title: 'The Practical Strategist',
+      expression: 'You have strong executive capability—able to organise resources, manage larger visions, and translate goals into tangible outcomes.',
+      soulUrge: 'Beneath the surface, you want competence, financial and personal sovereignty, and measurable impact from your efforts.',
+      personality: 'People recognise quiet authority, resilience, and purposeful ambition in the way you carry yourself.',
+      birthday: 'Your birth day brings sound judgement, organisational stamina, and calm composure around big decisions.',
+      personalYear: 'A year of tangible results, stepping into personal authority, and making grounded practical decisions.'
+    },
+    9: {
+      title: 'The Sage & Humanitarian',
+      expression: 'You express broad-minded wisdom, empathy across backgrounds, and a gift for helping people see the bigger picture.',
+      soulUrge: 'Your heart seeks meaning that serves beyond yourself—compassion, closure, and contributing something genuinely worthwhile.',
+      personality: 'Others sense generosity, maturity, worldly perspective, and a welcoming openness in your presence.',
+      birthday: 'Your birth day imparts idealism, emotional breadth, and an ability to release what has run its course.',
+      personalYear: 'A year of completion, clearing out outdated commitments or clutter, and preparing cleanly for a new cycle.'
+    },
+    11: {
+      title: 'The Intuitive Illuminator (Master 11)',
+      expression: 'You carry heightened intuitive perception and can inspire others when translating subtle insights into practical words.',
+      soulUrge: 'Your inner self craves authentic purpose, inspiration, and channels where your sensitivity becomes a source of clarity.',
+      personality: 'Others often sense an unusual perceptiveness, calm intensity, or uplifting presence about you.',
+      birthday: 'Birth day Master 11 sharpens your intuition and reminds you to stay grounded in steady daily routines.',
+      personalYear: 'A heightened year of insight—pairing quiet self-care with trusting your sharpest intuitive nudges.'
+    },
+    22: {
+      title: 'The Master Builder (Master 22)',
+      expression: 'You unite big-picture vision with disciplined execution, capable of building enduring systems that benefit many people.',
+      soulUrge: 'At heart, you feel called to turn meaningful ideals into practical, real-world structures that stand the test of time.',
+      personality: 'Others recognise grounded capability paired with unusually broad foresight and quiet steadiness.',
+      birthday: 'Birth day Master 22 supports ambitious yet structured problem-solving.',
+      personalYear: 'A year to anchor your biggest long-term ideas into realistic, steady action steps.'
+    },
+    33: {
+      title: 'The Master Teacher (Master 33)',
+      expression: 'Your talents centre on compassionate guidance, uplifting communication, and holding steady space for others to grow.',
+      soulUrge: 'Deep down, you are fulfilled by genuine service, healing encouragement, and leading through patient example.',
+      personality: 'People experience warmth, deep empathy, and reassuring steadiness in your company.',
+      birthday: 'Birth day Master 33 highlights heartfelt empathy and balanced wisdom.',
+      personalYear: 'A year centred on compassionate service—remembering to keep healthy boundaries for your own energy.'
+    }
+  };
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function isVowelInWord(word, idx) {
+    const ch = word[idx];
+    if ('AEIOU'.includes(ch)) return true;
+    if (ch !== 'Y') return false;
+    const prevIsVowel = idx > 0 && 'AEIOU'.includes(word[idx - 1]);
+    const nextIsVowel = idx < word.length - 1 && 'AEIOU'.includes(word[idx + 1]);
+    return !prevIsVowel && !nextIsVowel;
+  }
+
+  function computeFullNumerologyReport(fullName, dayVal, monthVal, yearVal) {
+    const cleanWords = fullName.toUpperCase().replace(/[^A-Z\s]/g, ' ').trim().split(/\s+/).filter(Boolean);
+
+    let expressionSum = 0;
+    let soulUrgeSum = 0;
+    let personalitySum = 0;
+
+    cleanWords.forEach(word => {
+      for (let i = 0; i < word.length; i++) {
+        const val = pythagoreanMap[word[i]] || 0;
+        expressionSum += val;
+        if (isVowelInWord(word, i)) {
+          soulUrgeSum += val;
+        } else {
+          personalitySum += val;
+        }
+      }
+    });
+
+    // Fallbacks in case a rare short name lacks vowels or consonants
+    if (soulUrgeSum === 0) soulUrgeSum = expressionSum;
+    if (personalitySum === 0) personalitySum = expressionSum;
+
+    const rDay = reduceNumber(dayVal, true);
+    const rMonth = reduceNumber(monthVal, true);
+    const yearDigitsSum = yearVal.toString().split('').reduce((acc, d) => acc + parseInt(d, 10), 0);
+    const rYear = reduceNumber(yearDigitsSum, true);
+
+    const lifePath = reduceNumber(rDay + rMonth + rYear, true);
+    const expression = reduceNumber(expressionSum, true);
+    const soulUrge = reduceNumber(soulUrgeSum, true);
+    const personality = reduceNumber(personalitySum, true);
+    const birthday = reduceNumber(dayVal, true);
+
+    const currentYear = 2026;
+    const currentYearSum = currentYear.toString().split('').reduce((acc, d) => acc + parseInt(d, 10), 0);
+    const personalYear = reduceNumber(reduceNumber(dayVal, false) + reduceNumber(monthVal, false) + reduceNumber(currentYearSum, false), false);
+
+    const getArch = (num) => numberArchetypes[num] || numberArchetypes[reduceNumber(num, false)] || numberArchetypes[1];
+    const lpInfo = lifePathDatabase[lifePath] || lifePathDatabase[reduceNumber(lifePath, false)] || lifePathDatabase[1];
+
+    return {
+      lifePath: {
+        number: lifePath,
+        label: 'Life Path Number',
+        subtitle: lpInfo.title,
+        meaning: `<strong>What it means for you:</strong> ${lpInfo.desc}`
+      },
+      expression: {
+        number: expression,
+        label: 'Expression (Destiny) Number',
+        subtitle: getArch(expression).title,
+        meaning: `<strong>What it means for you:</strong> ${getArch(expression).expression}`
+      },
+      soulUrge: {
+        number: soulUrge,
+        label: "Soul Urge (Heart's Desire) Number",
+        subtitle: getArch(soulUrge).title,
+        meaning: `<strong>What it means for you:</strong> ${getArch(soulUrge).soulUrge}`
+      },
+      personality: {
+        number: personality,
+        label: 'Personality Number',
+        subtitle: getArch(personality).title,
+        meaning: `<strong>What it means for you:</strong> ${getArch(personality).personality}`
+      },
+      birthday: {
+        number: birthday,
+        label: `Birthday Number (Born on Day ${dayVal})`,
+        subtitle: getArch(birthday).title,
+        meaning: `<strong>What it means for you:</strong> ${getArch(birthday).birthday}`
+      },
+      personalYear: {
+        number: personalYear,
+        label: `Personal Year Number (${currentYear})`,
+        subtitle: getArch(personalYear).title,
+        meaning: `<strong>What it means for you:</strong> ${getArch(personalYear).personalYear}`
+      }
+    };
+  }
+
+  const guideContents = {
+    'The Life Path Quickstart Guide': [
+      {
+        title: '1. The Life Path Calculation Method',
+        body: 'Reduce each unit of your birth date (Day, Month, Year) separately to a single digit by adding its numbers together. Preserve Master Numbers 11, 22, and 33 without reducing. Then sum all three reduced values together, reducing once more if necessary.'
+      },
+      {
+        title: '2. Core Archetypes Overview',
+        body: '<strong>1:</strong> The Independent Pioneer &middot; <strong>2:</strong> The Intuitive Peacemaker &middot; <strong>3:</strong> Creative Communicator &middot; <strong>4:</strong> Master Architect &middot; <strong>5:</strong> Versatile Freedom Seeker &middot; <strong>6:</strong> Compassionate Guardian &middot; <strong>7:</strong> Intuitive Seeker &amp; Analyst &middot; <strong>8:</strong> Practical Strategist &middot; <strong>9:</strong> Sage &amp; Humanitarian.'
+      },
+      {
+        title: '3. Reflection Questions for Your Current Crossroads',
+        body: '&bull; Which natural strength from your number has felt most underutilised lately?<br>&bull; What is one recurring situation where you tend to ignore your initial intuition?<br>&bull; What choice would you make if you focused on your long-term cycle rather than immediate pressure?'
+      }
+    ],
+    'Free Personal Numerology Summary': [
+      {
+        title: 'How to Read Your 6-Number Summary',
+        body: 'Your <strong>Life Path</strong> reflects your overarching journey; <strong>Expression</strong> and <strong>Birthday</strong> point to your innate strengths; <strong>Soul Urge</strong> speaks to what genuinely motivates you internally; <strong>Personality</strong> reflects how others first experience you; and your <strong>Personal Year (2026)</strong> highlights the focus of the current twelve months.'
+      }
+    ]
+  };
+
+  let currentDownloadUrl = null;
 
   document.querySelectorAll('[data-open-guide]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const guideName = btn.getAttribute('data-guide') || 'The Life Path Quickstart Guide';
+      activeGuideName = btn.getAttribute('data-guide') || 'Free Personal Numerology Summary';
+      const isSummaryReport = activeGuideName === 'Free Personal Numerology Summary';
+
       const guideTitleEl = document.getElementById('modalGuideTitle');
-      if (guideTitleEl) {
-        guideTitleEl.textContent = `Get Access: ${guideName}`;
+      const guideSubtitleEl = document.getElementById('modalGuideSubtitle');
+      const guideSubmitBtn = document.getElementById('guideSubmitBtn');
+      const dobGroup = document.getElementById('guideDobFields');
+      const dobDay = document.getElementById('guideDobDay');
+      const dobMonth = document.getElementById('guideDobMonth');
+      const dobYear = document.getElementById('guideDobYear');
+      const guideValidationMsg = document.getElementById('guideValidationMsg');
+
+      if (guideValidationMsg) {
+        guideValidationMsg.textContent = '';
+        guideValidationMsg.style.display = 'none';
       }
+
+      if (guideTitleEl) {
+        guideTitleEl.textContent = isSummaryReport
+          ? 'Your Free Personal Numerology Summary'
+          : `Get Access: ${activeGuideName}`;
+      }
+      if (guideSubtitleEl) {
+        guideSubtitleEl.textContent = isSummaryReport
+          ? 'Enter your full name, email, and birth date below for an instant free summary detailing all six of your core numbers and what each means for you.'
+          : 'Enter your name and email below for instant access—or include your birth date to preview your personal numbers too.';
+      }
+      if (guideSubmitBtn) {
+        guideSubmitBtn.textContent = isSummaryReport
+          ? 'Get My Free Numerology Summary'
+          : 'Get Instant Free Access';
+      }
+      if (dobGroup) {
+        dobGroup.style.display = 'block';
+      }
+      [dobDay, dobMonth, dobYear].forEach(el => {
+        if (el) el.required = isSummaryReport;
+      });
 
       if (guideFormWrapper) guideFormWrapper.style.display = 'block';
       if (guideSuccessDisplay) guideSuccessDisplay.style.display = 'none';
@@ -338,13 +608,71 @@ function initModalHandlers() {
   if (guideForm) {
     guideForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('guideName')?.value.trim() || 'Reader';
+      const name = document.getElementById('guideName')?.value.trim() || '';
       const email = document.getElementById('guideEmail')?.value.trim() || '';
+      const dayRaw = document.getElementById('guideDobDay')?.value || '';
+      const monthRaw = document.getElementById('guideDobMonth')?.value || '';
+      const yearRaw = document.getElementById('guideDobYear')?.value || '';
+      const validationMsg = document.getElementById('guideValidationMsg');
 
-      // Persist guide request
+      const showGuideError = (msg) => {
+        if (validationMsg) {
+          validationMsg.textContent = msg;
+          validationMsg.style.display = 'block';
+        }
+      };
+
+      const isSummaryReport = activeGuideName === 'Free Personal Numerology Summary';
+      const hasAnyDob = Boolean(dayRaw || monthRaw || yearRaw);
+
+      if (!/[a-zA-Z]/.test(name)) {
+        showGuideError('Please enter your name using alphabetical characters so we can calculate your numbers.');
+        return;
+      }
+
+      let numerologyReport = null;
+      let dobSummary = '';
+
+      if (isSummaryReport || hasAnyDob) {
+        const dayVal = parseInt(dayRaw, 10);
+        const monthVal = parseInt(monthRaw, 10);
+        const yearVal = parseInt(yearRaw, 10);
+
+        if (!dayVal || !monthVal || !yearVal) {
+          showGuideError('Please complete your day, month, and year of birth to generate your free numerology summary.');
+          return;
+        }
+        if (isNaN(yearVal) || yearVal < 1920 || yearVal > 2026) {
+          showGuideError('Please enter a valid birth year between 1920 and 2026.');
+          return;
+        }
+        const maxDays = getDaysInMonth(monthVal, yearVal);
+        if (dayVal > maxDays) {
+          const monthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          showGuideError(`${monthNames[monthVal]} ${yearVal} has ${maxDays} days. Please select a valid day.`);
+          return;
+        }
+
+        dobSummary = `${String(dayVal).padStart(2, '0')}/${String(monthVal).padStart(2, '0')}/${yearVal}`;
+        numerologyReport = computeFullNumerologyReport(name, dayVal, monthVal, yearVal);
+      }
+
+      if (validationMsg) {
+        validationMsg.textContent = '';
+        validationMsg.style.display = 'none';
+      }
+
+      // Persist free summary/guide request locally
       try {
         const guides = JSON.parse(localStorage.getItem('lpg_guide_requests') || '[]');
-        guides.push({ name, email, date: new Date().toISOString() });
+        guides.push({
+          guide: activeGuideName,
+          name,
+          email,
+          dob: dobSummary || null,
+          includesFreeNumerologyReport: Boolean(numerologyReport),
+          date: new Date().toISOString()
+        });
         localStorage.setItem('lpg_guide_requests', JSON.stringify(guides));
       } catch (err) {
         console.warn('Storage unavailable:', err);
@@ -352,6 +680,100 @@ function initModalHandlers() {
 
       const guideConfirmName = document.getElementById('guideConfirmName');
       if (guideConfirmName) guideConfirmName.textContent = name;
+
+      const readerHeading = document.getElementById('guideReadyHeading');
+      if (readerHeading) {
+        readerHeading.textContent = isSummaryReport
+          ? 'Your Free Personal Numerology Summary is Ready!'
+          : `${activeGuideName} is Ready!`;
+      }
+
+      const readerContainer = document.querySelector('#guideSuccessDisplay .quickstart-reader-container');
+      const sections = guideContents[activeGuideName] || guideContents['Free Personal Numerology Summary'];
+
+      let reportHtml = '';
+      if (numerologyReport) {
+        const orderedKeys = ['lifePath', 'expression', 'soulUrge', 'personality', 'birthday', 'personalYear'];
+        const cardsHtml = orderedKeys.map(key => {
+          const item = numerologyReport[key];
+          return `
+            <div class="numerology-number-card">
+              <div class="numerology-mini-badge">${item.number}</div>
+              <div>
+                <div class="numerology-number-meta">${escapeHtml(item.label)}</div>
+                <h5>Number ${item.number}: ${escapeHtml(item.subtitle)}</h5>
+                <p>${item.meaning}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        reportHtml = `
+          <div class="report-bundle-banner">
+            <h4>Free Personal Numerology Summary — ${escapeHtml(name)}</h4>
+            <p>Calculated from your full name and birth date (${escapeHtml(dobSummary)}). Below are all six of your core numbers with a brief explanation of what each means for you.</p>
+          </div>
+          <div class="numerology-report-grid">
+            ${cardsHtml}
+          </div>
+        `;
+      }
+
+      const sectionsHtml = sections.map(sec => `
+        <div class="quickstart-section-box">
+          <h4>${sec.title}</h4>
+          <p>${sec.body}</p>
+        </div>
+      `).join('');
+
+      const shopFollowupHtml = `
+        <div class="quickstart-section-box" style="border-color: var(--border-glow); text-align: center;">
+          <h4>Explore Full Written Reports, Digital Detox eBook (£9.99) &amp; 1:1 Sessions</h4>
+          <p style="margin-bottom: 0.9rem;">Ready for a comprehensive Personal Numerology or Biorhythm Report, a live Numerology &amp; Tarot consultation, or the Digital Detox full eBook?</p>
+          <a href="${WIX_SHOP_URL}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1.35rem;">
+            Visit the Celestial Navigator Shop →
+          </a>
+        </div>
+      `;
+
+      if (readerContainer) {
+        readerContainer.innerHTML = reportHtml + sectionsHtml + shopFollowupHtml;
+        readerContainer.scrollTop = 0;
+      }
+
+      // Wire client-side downloadable .txt copy
+      const downloadBtn = document.getElementById('downloadGuideTextBtn');
+      if (downloadBtn) {
+        if (currentDownloadUrl) {
+          URL.revokeObjectURL(currentDownloadUrl);
+          currentDownloadUrl = null;
+        }
+        const plainSections = sections.map(s => `${s.title}\n${s.body.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '').replace(/&middot;/g, '·').replace(/&bull;/g, '•').replace(/&amp;/g, '&')}`).join('\n\n');
+        const plainReport = numerologyReport
+          ? `FREE PERSONAL NUMEROLOGY SUMMARY FOR ${name.toUpperCase()} (DOB: ${dobSummary})\n` +
+            `=================================================================\n\n` +
+            ['lifePath', 'expression', 'soulUrge', 'personality', 'birthday', 'personalYear'].map(k => {
+              const item = numerologyReport[k];
+              return `${item.label}: ${item.number} (${item.subtitle})\n${item.meaning.replace(/<[^>]+>/g, '')}`;
+            }).join('\n\n') +
+            `\n\n-----------------------------------------------------------------\n\n`
+          : '';
+        const textPayload =
+          `LIFE PATH GUIDE — SIMON CORCORAN\n` +
+          `Shop & Bookings: ${WIX_SHOP_URL}\n\n` +
+          plainReport +
+          `${activeGuideName.toUpperCase()}\n` +
+          `=================================================================\n\n` +
+          plainSections + '\n';
+
+        const blob = new Blob([textPayload], { type: 'text/plain;charset=utf-8' });
+        currentDownloadUrl = URL.createObjectURL(blob);
+        downloadBtn.href = currentDownloadUrl;
+        downloadBtn.download = numerologyReport
+          ? 'Free-Personal-Numerology-Summary.txt'
+          : 'Life-Path-Quickstart-Guide.txt';
+        downloadBtn.style.display = 'inline-flex';
+      }
 
       if (guideFormWrapper) guideFormWrapper.style.display = 'none';
       if (guideSuccessDisplay) guideSuccessDisplay.style.display = 'block';

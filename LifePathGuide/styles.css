@@ -1444,6 +1444,78 @@ a:hover {
   }
 }
 
+/* Products Summary Showcase */
+.products-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.product-order-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(11, 15, 25, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border-radius: 50px;
+}
+
+.ebook-summary-strip {
+  margin-top: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ebook-summary-strip:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.ebook-thumb {
+  width: 140px;
+  height: 175px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--border-glow);
+}
+
+.responsive-split-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .products-summary-grid,
+  .responsive-split-card {
+    grid-template-columns: 1fr;
+  }
+  .ebook-summary-strip {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .ebook-thumb {
+    width: 120px;
+    height: 150px;
+  }
+}
+
 @media (max-width: 640px) {
   .situations-grid {
     grid-template-columns: 1fr;
@@ -1454,4 +1526,108 @@ a:hover {
     gap: 1rem;
   }
 }
+
+/* Free Guide + Personal Numerology Report Modal Enhancements */
+.dob-inline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 0.75rem;
+}
+
+.form-field-error {
+  color: #F87171;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.report-bundle-banner {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(6, 182, 212, 0.08));
+  border: 1px solid var(--border-glow);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.report-bundle-banner h4 {
+  color: var(--gold-light);
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+
+.report-bundle-banner p {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.numerology-report-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.numerology-number-card {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.numerology-number-card:hover {
+  border-color: var(--border-glow);
+}
+
+.numerology-mini-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-glow));
+  color: #0B0F19;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.numerology-number-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cyan-accent);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.numerology-number-card h5 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--gold-light);
+  margin-bottom: 0.35rem;
+}
+
+.numerology-number-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .dob-inline-grid {
+    grid-template-columns: 1fr;
+  }
+  .numerology-number-card {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+}
+
 
