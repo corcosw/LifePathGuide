@@ -52,9 +52,28 @@
   <!-- GUIDES GRID -->
   <section class="detail-section container">
     <div class="grid-2">
-      <!-- Guide 1: Principal Guide -->
+      <!-- Free Personal Numerology Summary -->
       <div class="guide-card" style="padding: 3rem; border: 1px solid var(--border-glow);">
-        <span class="guide-badge">Principal Free Guide · Numerology</span>
+        <span class="guide-badge">Complimentary Report · All 6 Numbers</span>
+        <h3 style="font-size: 1.8rem; margin: 0.5rem 0 1rem;">Free Personal Numerology Summary</h3>
+        <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+          Calculate all six of your core Pythagorean numbers and receive an instant <strong>Free Numerology Summary</strong> explaining what each number means for you.
+        </p>
+
+        <ul class="card-features" style="margin-bottom: 2rem;">
+          <li><strong>All 6 core numbers:</strong> Life Path, Expression, Soul Urge, Personality, Birthday &amp; Personal Year</li>
+          <li>Brief personalised description of what every number means for you</li>
+          <li>Instant browser summary plus downloadable text copy</li>
+        </ul>
+
+        <button class="btn-primary" data-open-guide data-guide="Free Personal Numerology Summary">
+          Get Your Free Numerology Summary
+        </button>
+      </div>
+
+      <!-- Guide 2: Life Path Quickstart Guide -->
+      <div class="guide-card" style="padding: 3rem;">
+        <span class="guide-badge">Free Guide · Numerology</span>
         <h3 style="font-size: 1.8rem; margin: 0.5rem 0 1rem;">The Life Path Quickstart Guide</h3>
         <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
           Discover how to calculate and interpret your core numbers in under five minutes, understand your primary life lesson, and decode the rhythm behind the numbers in your life.
@@ -66,28 +85,27 @@
           <li>Key reflection prompts to help you navigate your current crossroads</li>
         </ul>
 
-        <button class="btn-primary" data-open-guide data-guide="The Life Path Quickstart Guide">
-          Read / Download Free Guide (PDF)
+        <button class="btn-secondary" data-open-guide data-guide="The Life Path Quickstart Guide">
+          Read / Download Quickstart Guide
         </button>
       </div>
+    </div>
 
-      <!-- Guide 2: Digital Wellness Guide + Free Numerology Report -->
-      <div class="guide-card" style="padding: 3rem;">
-        <span class="guide-badge">Free Bundle · Digital Detox + Personal Numerology Report</span>
-        <h3 style="font-size: 1.8rem; margin: 0.5rem 0 1rem;">The Digital Detox Action Sheet &amp; Free Numerology Report</h3>
-        <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
-          Practical, grounded strategies to step out of mindless smartphone scroll loops—plus a complimentary <strong>Free Personal Numerology Report</strong> detailing all of your core numbers and what each means for you.
+    <div class="ebook-summary-strip" style="margin-top: 2.5rem;">
+      <img src="assets/images/Digital_Detox_Cover.jpg" alt="Digital Detox - The Full Guide eBook Cover" class="ebook-thumb">
+      <div>
+        <span class="guide-badge" style="margin-bottom: 0.4rem;">Paid Digital Wellness eBook</span>
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.4rem; color: var(--text-main);">Digital Detox &mdash; The Full Guide</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+          Looking for Simon's Digital Detox guide? Available as a complete paid PDF eBook with printable habit trackers and the 3-step evening disconnect protocol.
         </p>
-
-        <ul class="card-features" style="margin-bottom: 2rem;">
-          <li>Identifying your primary phone triggers &amp; 3-step evening disconnect protocol</li>
-          <li><strong>Included Free Numerology Report:</strong> Life Path, Expression, Soul Urge, Personality, Birthday &amp; Personal Year numbers</li>
-          <li>Instant tailored description of what every number means for you</li>
-        </ul>
-
-        <button class="btn-primary" data-open-guide data-guide="The Digital Detox Action Sheet">
-          Get Free Digital Detox Guide &amp; Numerology Report
-        </button>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;">
+        <span class="card-price" style="font-size: 1.4rem;">£9.99</span>
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; justify-content: flex-end;">
+          <a href="digital-detox-ebook.html" class="btn-secondary" style="white-space: nowrap; padding: 0.65rem 1.1rem; font-size: 0.88rem;">Details</a>
+          <a href="https://www.thecelestialnavigator.com/category/all-products" target="_blank" rel="noopener noreferrer" class="btn-primary" style="white-space: nowrap; padding: 0.65rem 1.25rem; font-size: 0.88rem;">Buy in Shop →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -138,8 +156,8 @@
       <button id="closeGuideModal" class="modal-close-btn" aria-label="Close modal">✕</button>
       
       <div id="guideFormWrapper">
-        <h3 id="modalGuideTitle" class="modal-title">Free Digital Detox Guide &amp; Personal Numerology Report</h3>
-        <p id="modalGuideSubtitle" class="modal-subtitle">Enter your full name, email, and birth date below to unlock the Digital Detox Action Sheet plus your Free Numerology Report detailing all of your numbers.</p>
+        <h3 id="modalGuideTitle" class="modal-title">Your Free Personal Numerology Summary</h3>
+        <p id="modalGuideSubtitle" class="modal-subtitle">Enter your full name, email, and birth date below for an instant free summary detailing all six of your core numbers and what each means for you.</p>
 
         <form id="guideForm" class="form-grid">
           <div class="form-field">
@@ -193,23 +211,23 @@
           <div id="guideValidationMsg" class="form-field-error"></div>
 
           <button id="guideSubmitBtn" type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.75rem;">
-            Unlock Free Guide &amp; Personal Numerology Report
+            Get My Free Numerology Summary
           </button>
         </form>
       </div>
 
       <div id="guideSuccessDisplay" style="display: none;" class="modal-confirmation-state">
         <div class="confirmation-check-icon">✓</div>
-        <h3 id="guideReadyHeading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Guide &amp; Numerology Report Are Ready!</h3>
+        <h3 id="guideReadyHeading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Free Personal Numerology Summary is Ready!</h3>
         <p class="confirmation-next-steps">
-          Thank you, <strong id="guideConfirmName"></strong>! Read your personalised report and guide below or download a copy to keep.
+          Thank you, <strong id="guideConfirmName"></strong>! Read your personalised summary below or download a copy to keep.
         </p>
 
         <div class="quickstart-reader-container"></div>
 
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
-          <a id="downloadGuideTextBtn" href="#" download="Digital-Detox-and-Personal-Numerology-Report.txt" class="btn-secondary" style="display: none;">
-            Download Report (.txt)
+          <a id="downloadGuideTextBtn" href="#" download="Free-Personal-Numerology-Summary.txt" class="btn-secondary" style="display: none;">
+            Download Summary (.txt)
           </a>
           <button id="closeGuideConfirmBtn" class="btn-primary" style="justify-content: center;">
             Done Reading

@@ -304,7 +304,7 @@ function initModalHandlers() {
   const guideFormWrapper = document.getElementById('guideFormWrapper');
   const guideSuccessDisplay = document.getElementById('guideSuccessDisplay');
   const closeGuideConfirmBtn = document.getElementById('closeGuideConfirmBtn');
-  let activeGuideName = 'The Digital Detox Action Sheet';
+  let activeGuideName = 'Free Personal Numerology Summary';
 
   const pythagoreanMap = {
     A: 1, J: 1, S: 1,
@@ -531,18 +531,10 @@ function initModalHandlers() {
         body: '&bull; Which natural strength from your number has felt most underutilised lately?<br>&bull; What is one recurring situation where you tend to ignore your initial intuition?<br>&bull; What choice would you make if you focused on your long-term cycle rather than immediate pressure?'
       }
     ],
-    'The Digital Detox Action Sheet': [
+    'Free Personal Numerology Summary': [
       {
-        title: '1. Spotting Automatic Scroll Loops',
-        body: 'Notice the three moments you reach for your phone without deciding to (waking up, transitions between tasks, late evening fatigue). Turning off non-human notifications removes 70% of daily friction.'
-      },
-      {
-        title: '2. The 3-Step Evening Disconnect Protocol',
-        body: '<strong>60 mins before bed:</strong> Charge your phone outside the bedroom &middot; <strong>30 mins before bed:</strong> Switch screens off and use a physical book or notepad &middot; <strong>Next morning:</strong> Wait 20 minutes before checking messages so you set your own focus first.'
-      },
-      {
-        title: '3. Daytime Attention Reset Prompts',
-        body: '&bull; Before unlocking my phone, what specific thing am I opening it to do?<br>&bull; What calm offline activity can replace my default evening scroll window?<br>&bull; How does my mental clarity feel after a single screen-free hour?'
+        title: 'How to Read Your 6-Number Summary',
+        body: 'Your <strong>Life Path</strong> reflects your overarching journey; <strong>Expression</strong> and <strong>Birthday</strong> point to your innate strengths; <strong>Soul Urge</strong> speaks to what genuinely motivates you internally; <strong>Personality</strong> reflects how others first experience you; and your <strong>Personal Year (2026)</strong> highlights the focus of the current twelve months.'
       }
     ]
   };
@@ -552,8 +544,8 @@ function initModalHandlers() {
   document.querySelectorAll('[data-open-guide]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      activeGuideName = btn.getAttribute('data-guide') || 'The Digital Detox Action Sheet';
-      const isBundle = activeGuideName === 'The Digital Detox Action Sheet';
+      activeGuideName = btn.getAttribute('data-guide') || 'Free Personal Numerology Summary';
+      const isSummaryReport = activeGuideName === 'Free Personal Numerology Summary';
 
       const guideTitleEl = document.getElementById('modalGuideTitle');
       const guideSubtitleEl = document.getElementById('modalGuideSubtitle');
@@ -570,25 +562,25 @@ function initModalHandlers() {
       }
 
       if (guideTitleEl) {
-        guideTitleEl.textContent = isBundle
-          ? 'Free Digital Detox Guide & Personal Numerology Report'
+        guideTitleEl.textContent = isSummaryReport
+          ? 'Your Free Personal Numerology Summary'
           : `Get Access: ${activeGuideName}`;
       }
       if (guideSubtitleEl) {
-        guideSubtitleEl.textContent = isBundle
-          ? 'Enter your full name, email, and birth date below to receive the Digital Detox Action Sheet plus a Free Numerology Report detailing all of your numbers.'
-          : 'Enter your name and email below for instant access—or include your birth date to preview all of your personal numbers too.';
+        guideSubtitleEl.textContent = isSummaryReport
+          ? 'Enter your full name, email, and birth date below for an instant free summary detailing all six of your core numbers and what each means for you.'
+          : 'Enter your name and email below for instant access—or include your birth date to preview your personal numbers too.';
       }
       if (guideSubmitBtn) {
-        guideSubmitBtn.textContent = isBundle
-          ? 'Unlock Free Guide & Personal Numerology Report'
+        guideSubmitBtn.textContent = isSummaryReport
+          ? 'Get My Free Numerology Summary'
           : 'Get Instant Free Access';
       }
       if (dobGroup) {
         dobGroup.style.display = 'block';
       }
       [dobDay, dobMonth, dobYear].forEach(el => {
-        if (el) el.required = isBundle;
+        if (el) el.required = isSummaryReport;
       });
 
       if (guideFormWrapper) guideFormWrapper.style.display = 'block';
@@ -630,7 +622,7 @@ function initModalHandlers() {
         }
       };
 
-      const isBundle = activeGuideName === 'The Digital Detox Action Sheet';
+      const isSummaryReport = activeGuideName === 'Free Personal Numerology Summary';
       const hasAnyDob = Boolean(dayRaw || monthRaw || yearRaw);
 
       if (!/[a-zA-Z]/.test(name)) {
@@ -641,13 +633,13 @@ function initModalHandlers() {
       let numerologyReport = null;
       let dobSummary = '';
 
-      if (isBundle || hasAnyDob) {
+      if (isSummaryReport || hasAnyDob) {
         const dayVal = parseInt(dayRaw, 10);
         const monthVal = parseInt(monthRaw, 10);
         const yearVal = parseInt(yearRaw, 10);
 
         if (!dayVal || !monthVal || !yearVal) {
-          showGuideError('Please complete your day, month, and year of birth to generate your personal numerology report.');
+          showGuideError('Please complete your day, month, and year of birth to generate your free numerology summary.');
           return;
         }
         if (isNaN(yearVal) || yearVal < 1920 || yearVal > 2026) {
@@ -670,7 +662,7 @@ function initModalHandlers() {
         validationMsg.style.display = 'none';
       }
 
-      // Persist guide & report request locally
+      // Persist free summary/guide request locally
       try {
         const guides = JSON.parse(localStorage.getItem('lpg_guide_requests') || '[]');
         guides.push({
@@ -691,13 +683,13 @@ function initModalHandlers() {
 
       const readerHeading = document.getElementById('guideReadyHeading');
       if (readerHeading) {
-        readerHeading.textContent = isBundle
-          ? 'Your Digital Detox Guide & Free Numerology Report Are Ready!'
+        readerHeading.textContent = isSummaryReport
+          ? 'Your Free Personal Numerology Summary is Ready!'
           : `${activeGuideName} is Ready!`;
       }
 
       const readerContainer = document.querySelector('#guideSuccessDisplay .quickstart-reader-container');
-      const sections = guideContents[activeGuideName] || guideContents['The Digital Detox Action Sheet'];
+      const sections = guideContents[activeGuideName] || guideContents['Free Personal Numerology Summary'];
 
       let reportHtml = '';
       if (numerologyReport) {
@@ -718,15 +710,11 @@ function initModalHandlers() {
 
         reportHtml = `
           <div class="report-bundle-banner">
-            <h4>Your Free Personal Numerology Report — ${escapeHtml(name)}</h4>
-            <p>Calculated using your full name and birth date (${escapeHtml(dobSummary)}). Below is your complete set of core numbers with a brief guide to what each number means for you.</p>
+            <h4>Free Personal Numerology Summary — ${escapeHtml(name)}</h4>
+            <p>Calculated from your full name and birth date (${escapeHtml(dobSummary)}). Below are all six of your core numbers with a brief explanation of what each means for you.</p>
           </div>
           <div class="numerology-report-grid">
             ${cardsHtml}
-          </div>
-          <div class="report-bundle-banner" style="margin-top: 0.5rem; margin-bottom: 1.25rem; border-color: rgba(6, 182, 212, 0.35);">
-            <h4>Included Bonus: ${escapeHtml(activeGuideName)}</h4>
-            <p>Your practical reset framework is included immediately below.</p>
           </div>
         `;
       }
@@ -740,8 +728,8 @@ function initModalHandlers() {
 
       const shopFollowupHtml = `
         <div class="quickstart-section-box" style="border-color: var(--border-glow); text-align: center;">
-          <h4>Explore Full Written Reports &amp; 1:1 Sessions</h4>
-          <p style="margin-bottom: 0.9rem;">Ready for a deeper Annual Personal Year Blueprint, Biorhythm Report, live Numerology &amp; Tarot consultation, or Digital Detox eBook?</p>
+          <h4>Explore Full Written Reports, Digital Detox eBook (£9.99) &amp; 1:1 Sessions</h4>
+          <p style="margin-bottom: 0.9rem;">Ready for a comprehensive Personal Numerology or Biorhythm Report, a live Numerology &amp; Tarot consultation, or the Digital Detox full eBook?</p>
           <a href="${WIX_SHOP_URL}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.85rem; padding: 0.65rem 1.35rem;">
             Visit the Celestial Navigator Shop →
           </a>
@@ -762,7 +750,7 @@ function initModalHandlers() {
         }
         const plainSections = sections.map(s => `${s.title}\n${s.body.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '').replace(/&middot;/g, '·').replace(/&bull;/g, '•').replace(/&amp;/g, '&')}`).join('\n\n');
         const plainReport = numerologyReport
-          ? `PERSONAL NUMEROLOGY REPORT FOR ${name.toUpperCase()} (DOB: ${dobSummary})\n` +
+          ? `FREE PERSONAL NUMEROLOGY SUMMARY FOR ${name.toUpperCase()} (DOB: ${dobSummary})\n` +
             `=================================================================\n\n` +
             ['lifePath', 'expression', 'soulUrge', 'personality', 'birthday', 'personalYear'].map(k => {
               const item = numerologyReport[k];
@@ -782,7 +770,7 @@ function initModalHandlers() {
         currentDownloadUrl = URL.createObjectURL(blob);
         downloadBtn.href = currentDownloadUrl;
         downloadBtn.download = numerologyReport
-          ? 'Digital-Detox-and-Personal-Numerology-Report.txt'
+          ? 'Free-Personal-Numerology-Summary.txt'
           : 'Life-Path-Quickstart-Guide.txt';
         downloadBtn.style.display = 'inline-flex';
       }
