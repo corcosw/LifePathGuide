@@ -27,9 +27,9 @@
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
 
-      <button class="nav-cta-btn" data-open-booking data-service="Numerology & Tarot Consultation (60 Mins)">
-        <span>Enquire About a Session</span>
-      </button>
+      <a href="https://www.thecelestialnavigator.com/category/all-products" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">
+        <span>Book &amp; Shop</span>
+      </a>
 
       <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">☰</button>
     </div>
@@ -71,22 +71,22 @@
         </button>
       </div>
 
-      <!-- Guide 2: Digital Wellness Guide -->
+      <!-- Guide 2: Digital Wellness Guide + Free Numerology Report -->
       <div class="guide-card" style="padding: 3rem;">
-        <span class="guide-badge">Free Guide · Mindset & Wellness</span>
-        <h3 style="font-size: 1.8rem; margin: 0.5rem 0 1rem;">The Digital Detox Action Sheet</h3>
+        <span class="guide-badge">Free Bundle · Digital Detox + Personal Numerology Report</span>
+        <h3 style="font-size: 1.8rem; margin: 0.5rem 0 1rem;">The Digital Detox Action Sheet &amp; Free Numerology Report</h3>
         <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
-          Practical, grounded strategies to step out of mindless smartphone trance, break compulsive phone-checking, and reset your daily attention span.
+          Practical, grounded strategies to step out of mindless smartphone scroll loops—plus a complimentary <strong>Free Personal Numerology Report</strong> detailing all of your core numbers and what each means for you.
         </p>
 
         <ul class="card-features" style="margin-bottom: 2rem;">
-          <li>Identifying your primary trigger times and app loops</li>
-          <li>A 3-step evening disconnect protocol for restorative sleep</li>
-          <li>Simple habit replacements to quiet daytime mental restlessness</li>
+          <li>Identifying your primary phone triggers &amp; 3-step evening disconnect protocol</li>
+          <li><strong>Included Free Numerology Report:</strong> Life Path, Expression, Soul Urge, Personality, Birthday &amp; Personal Year numbers</li>
+          <li>Instant tailored description of what every number means for you</li>
         </ul>
 
-        <button class="btn-secondary" data-open-guide data-guide="The Digital Detox Action Sheet">
-          Read / Download Action Sheet
+        <button class="btn-primary" data-open-guide data-guide="The Digital Detox Action Sheet">
+          Get Free Digital Detox Guide &amp; Numerology Report
         </button>
       </div>
     </div>
@@ -132,19 +132,19 @@
     </div>
   </footer>
 
-  <!-- FREE GUIDE DOWNLOAD & INSTANT READER MODAL -->
+  <!-- FREE GUIDE DOWNLOAD & PERSONAL NUMEROLOGY REPORT MODAL -->
   <div id="guideModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 650px;">
+    <div class="modal-card" style="max-width: 720px;">
       <button id="closeGuideModal" class="modal-close-btn" aria-label="Close modal">✕</button>
       
       <div id="guideFormWrapper">
-        <h3 id="modalGuideTitle" class="modal-title">Get Free Access</h3>
-        <p class="modal-subtitle">Enter your name and email below for immediate access.</p>
+        <h3 id="modalGuideTitle" class="modal-title">Free Digital Detox Guide &amp; Personal Numerology Report</h3>
+        <p id="modalGuideSubtitle" class="modal-subtitle">Enter your full name, email, and birth date below to unlock the Digital Detox Action Sheet plus your Free Numerology Report detailing all of your numbers.</p>
 
         <form id="guideForm" class="form-grid">
           <div class="form-field">
-            <label for="guideName">Your First Name</label>
-            <input type="text" id="guideName" placeholder="e.g. Alex" required>
+            <label for="guideName">Your Full Name (Used for Expression, Soul Urge &amp; Personality Numbers)</label>
+            <input type="text" id="guideName" placeholder="e.g. Sarah Louise Jenkins" required>
           </div>
 
           <div class="form-field">
@@ -152,37 +152,69 @@
             <input type="email" id="guideEmail" placeholder="alex@example.com" required>
           </div>
 
-          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            Open Instant Free Guide
+          <div id="guideDobFields" class="form-field">
+            <label>Date of Birth (Used for Life Path, Birthday &amp; Personal Year Numbers)</label>
+            <div class="dob-inline-grid">
+              <select id="guideDobDay" aria-label="Day of Birth">
+                <option value="">Day</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                <option value="13">13</option><option value="14">14</option><option value="15">15</option>
+                <option value="16">16</option><option value="17">17</option><option value="18">18</option>
+                <option value="19">19</option><option value="20">20</option><option value="21">21</option>
+                <option value="22">22</option><option value="23">23</option><option value="24">24</option>
+                <option value="25">25</option><option value="26">26</option><option value="27">27</option>
+                <option value="28">28</option><option value="29">29</option><option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+
+              <select id="guideDobMonth" aria-label="Month of Birth">
+                <option value="">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+
+              <input type="number" id="guideDobYear" placeholder="Year (e.g. 1985)" min="1920" max="2026" aria-label="Year of Birth">
+            </div>
+          </div>
+
+          <div id="guideValidationMsg" class="form-field-error"></div>
+
+          <button id="guideSubmitBtn" type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.75rem;">
+            Unlock Free Guide &amp; Personal Numerology Report
           </button>
         </form>
       </div>
 
       <div id="guideSuccessDisplay" style="display: none;" class="modal-confirmation-state">
         <div class="confirmation-check-icon">✓</div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Guide is Ready!</h3>
+        <h3 id="guideReadyHeading" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Your Guide &amp; Numerology Report Are Ready!</h3>
         <p class="confirmation-next-steps">
-          Thank you, <strong id="guideConfirmName"></strong>! You can read the guide directly below:
+          Thank you, <strong id="guideConfirmName"></strong>! Read your personalised report and guide below or download a copy to keep.
         </p>
 
-        <div class="quickstart-reader-container">
-          <div class="quickstart-section-box">
-            <h4>1. The Life Path Calculation Method</h4>
-            <p>Reduce each unit of your birth date (Day, Month, Year) separately to a single digit by adding its numbers together. Preserve Master Numbers 11, 22, and 33 without reducing. Then sum all three reduced values together, reducing once more if necessary.</p>
-          </div>
-          <div class="quickstart-section-box">
-            <h4>2. Core Archetypes Overview</h4>
-            <p><strong>1:</strong> The Independent Pioneer · <strong>2:</strong> The Intuitive Peacemaker · <strong>3:</strong> Creative Communicator · <strong>4:</strong> Master Architect · <strong>5:</strong> Versatile Freedom Seeker · <strong>6:</strong> Compassionate Guardian · <strong>7:</strong> Intuitive Seeker & Analyst · <strong>8:</strong> Practical Strategist · <strong>9:</strong> Sage & Humanitarian.</p>
-          </div>
-          <div class="quickstart-section-box">
-            <h4>3. Reflection Questions for Your Current Crossroads</h4>
-            <p>• Which natural strength from your number has felt most underutilised lately?<br>• What is one recurring situation where you tend to ignore your initial intuition?<br>• What choice would you make if you focused on your long-term cycle rather than immediate pressure?</p>
-          </div>
-        </div>
+        <div class="quickstart-reader-container"></div>
 
-        <button id="closeGuideConfirmBtn" class="btn-primary" style="width: 100%; justify-content: center;">
-          Done Reading
-        </button>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
+          <a id="downloadGuideTextBtn" href="#" download="Digital-Detox-and-Personal-Numerology-Report.txt" class="btn-secondary" style="display: none;">
+            Download Report (.txt)
+          </a>
+          <button id="closeGuideConfirmBtn" class="btn-primary" style="justify-content: center;">
+            Done Reading
+          </button>
+        </div>
       </div>
     </div>
   </div>
