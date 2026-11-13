@@ -303,14 +303,46 @@ function initModalHandlers() {
   const guideFormWrapper = document.getElementById('guideFormWrapper');
   const guideSuccessDisplay = document.getElementById('guideSuccessDisplay');
   const closeGuideConfirmBtn = document.getElementById('closeGuideConfirmBtn');
+  let activeGuideName = 'The Life Path Quickstart Guide';
+
+  const guideContents = {
+    'The Life Path Quickstart Guide': [
+      {
+        title: '1. The Life Path Calculation Method',
+        body: 'Reduce each unit of your birth date (Day, Month, Year) separately to a single digit by adding its numbers together. Preserve Master Numbers 11, 22, and 33 without reducing. Then sum all three reduced values together, reducing once more if necessary.'
+      },
+      {
+        title: '2. Core Archetypes Overview',
+        body: '<strong>1:</strong> The Independent Pioneer &middot; <strong>2:</strong> The Intuitive Peacemaker &middot; <strong>3:</strong> Creative Communicator &middot; <strong>4:</strong> Master Architect &middot; <strong>5:</strong> Versatile Freedom Seeker &middot; <strong>6:</strong> Compassionate Guardian &middot; <strong>7:</strong> Intuitive Seeker &amp; Analyst &middot; <strong>8:</strong> Practical Strategist &middot; <strong>9:</strong> Sage &amp; Humanitarian.'
+      },
+      {
+        title: '3. Reflection Questions for Your Current Crossroads',
+        body: '&bull; Which natural strength from your number has felt most underutilised lately?<br>&bull; What is one recurring situation where you tend to ignore your initial intuition?<br>&bull; What choice would you make if you focused on your long-term cycle rather than immediate pressure?'
+      }
+    ],
+    'The Digital Detox Action Sheet': [
+      {
+        title: '1. Spotting Automatic Scroll Loops',
+        body: 'Notice the three moments you reach for your phone without deciding to (waking up, transitions between tasks, late evening fatigue). Turning off non-human notifications removes 70% of daily friction.'
+      },
+      {
+        title: '2. The 3-Step Evening Disconnect Protocol',
+        body: '<strong>60 mins before bed:</strong> Charge your phone outside the bedroom &middot; <strong>30 mins before bed:</strong> Switch screens off and use a physical book or notepad &middot; <strong>Next morning:</strong> Wait 20 minutes before checking messages so you set your own focus first.'
+      },
+      {
+        title: '3. Daytime Attention Reset Prompts',
+        body: '&bull; Before unlocking my phone, what specific thing am I opening it to do?<br>&bull; What calm offline activity can replace my default evening scroll window?<br>&bull; How does my mental clarity feel after a single screen-free hour?'
+      }
+    ]
+  };
 
   document.querySelectorAll('[data-open-guide]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const guideName = btn.getAttribute('data-guide') || 'The Life Path Quickstart Guide';
+      activeGuideName = btn.getAttribute('data-guide') || 'The Life Path Quickstart Guide';
       const guideTitleEl = document.getElementById('modalGuideTitle');
       if (guideTitleEl) {
-        guideTitleEl.textContent = `Get Access: ${guideName}`;
+        guideTitleEl.textContent = `Get Access: ${activeGuideName}`;
       }
 
       if (guideFormWrapper) guideFormWrapper.style.display = 'block';
@@ -344,7 +376,7 @@ function initModalHandlers() {
       // Persist guide request
       try {
         const guides = JSON.parse(localStorage.getItem('lpg_guide_requests') || '[]');
-        guides.push({ name, email, date: new Date().toISOString() });
+        guides.push({ guide: activeGuideName, name, email, date: new Date().toISOString() });
         localStorage.setItem('lpg_guide_requests', JSON.stringify(guides));
       } catch (err) {
         console.warn('Storage unavailable:', err);
@@ -352,6 +384,20 @@ function initModalHandlers() {
 
       const guideConfirmName = document.getElementById('guideConfirmName');
       if (guideConfirmName) guideConfirmName.textContent = name;
+
+      const readerHeading = document.getElementById('guideReadyHeading');
+      if (readerHeading) readerHeading.textContent = `${activeGuideName} is Ready!`;
+
+      const readerContainer = document.querySelector('#guideSuccessDisplay .quickstart-reader-container');
+      const sections = guideContents[activeGuideName] || guideContents['The Life Path Quickstart Guide'];
+      if (readerContainer) {
+        readerContainer.innerHTML = sections.map(sec => `
+          <div class="quickstart-section-box">
+            <h4>${sec.title}</h4>
+            <p>${sec.body}</p>
+          </div>
+        `).join('');
+      }
 
       if (guideFormWrapper) guideFormWrapper.style.display = 'none';
       if (guideSuccessDisplay) guideSuccessDisplay.style.display = 'block';
